@@ -16,7 +16,7 @@ function main(argv) {
 		});
 		var result = customMap(maps, field, values);
 
-		var name = values.join('');
+		var name = values.join('').replace(/\s/g, '');
 		var data = name + ' = ' + JSON.stringify(result);
 		var fileName = name + '.js';
 
@@ -35,12 +35,9 @@ function customMap(obj, field, values) {
 		if (key !== 'features') {
 			map[key] = obj[key];
 		} else {
-			console.log(key);
 			var features = obj[key].filter(function (e) {
 				return filterData(e, field, values);
 			});
-
-			console.log(key);
 
 			console.log('Exported Countries on ' + values.join(', ') + ': ' + features.length);
 
